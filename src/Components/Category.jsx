@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-
-export default function Category({ cache, setCache }) {
+import Header from "./Header";
+export default function Category({ categories, cache, setCache }) {
   console.clear();
   const { id } = useParams();
   console.log("Category: ", id);
@@ -33,6 +33,7 @@ export default function Category({ cache, setCache }) {
 
   return (
     <>
+      <Header categories={categories} />
       <h1>{id}</h1>
       {isLoading && (
         <>

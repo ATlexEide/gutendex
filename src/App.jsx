@@ -42,6 +42,7 @@ function App() {
           path="/category/:id"
           element={
             <Category
+              categories={categories}
               cache={cache}
               setCache={setCache}
               books={books}
@@ -53,12 +54,16 @@ function App() {
           path="/favourites"
           element={
             <Favourites
+              categories={categories}
               favouriteBooks={favouriteBooks}
               setFavouriteBooks={setFavouriteBooks}
             />
           }
         />
-        <Route path="/details/:id" element={<Details />} />
+        <Route
+          path="/details/:id"
+          element={<Details categories={categories} />}
+        />
       </Routes>
     </Router>
   );

@@ -1,7 +1,10 @@
-export default function Favourites({ favouriteBooks }) {
+import Header from "./Header";
+
+export default function Favourites({ categories, favouriteBooks }) {
   console.log(favouriteBooks);
   return (
     <>
+      <Header categories={categories} />
       <h1>Favourites</h1>
       <ul>
         {favouriteBooks &&

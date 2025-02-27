@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Header from "./Header";
 
-function Details() {
+function Details({ categories }) {
   const [book, setBook] = useState({});
   const { id } = useParams();
   console.log(id);
@@ -13,6 +14,7 @@ function Details() {
   console.log(book);
   return (
     <>
+      <Header categories={categories} />
       <h1>Details</h1>
       {book.title && <h2>{book.title}</h2>}
       {book.formats && (
