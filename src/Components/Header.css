@@ -1,0 +1,13 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+h1 {
+  font-size: 2rem;
+}
+#categories {
+  list-style-type: none;
+  display: flex;
+  gap: 10px;
+}
