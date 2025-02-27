@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import Home from "./Components/Home";
 import Category from "./Components/Category";
-import { useState } from "react";
 import Favourites from "./Components/Favourites";
+import Details from "./Components/Details";
 
 function App() {
   const categories = [
@@ -57,6 +58,7 @@ function App() {
             />
           }
         />
+        <Route path="/details/:id" element={<Details />} />
       </Routes>
     </Router>
   );
