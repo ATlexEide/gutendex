@@ -10,11 +10,10 @@ export default function Header({ categories }) {
       <h1>Gutenberg oppgave</h1>
       <nav>
         <ul id="categories">
+          <Link to={`/favourites`}>Favourites |</Link>
           {categories.map((cat, i) => (
             <li key={i}>
-              <Link to={`/category/${cat}`} state={testState}>
-                {cat}
-              </Link>
+              <Link to={`/category/${cat}`}>{cat}</Link>
             </li>
           ))}
         </ul>
