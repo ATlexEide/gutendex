@@ -22,7 +22,12 @@ function App() {
   ];
   const [cache, setCache] = useState({});
   const [books, setBooks] = useState([]);
-  const [favourites, setFavourites] = useState([]);
+  const [favouriteBooks, setFavouriteBooks] = useState([
+    { title: "test" },
+    { title: "moby" },
+    { title: "my" },
+    { title: "dick" },
+  ]);
 
   return (
     <Router>
@@ -46,7 +51,10 @@ function App() {
         <Route
           path="/favourites"
           element={
-            <Favourites favourites={favourites} setFavourites={setFavourites} />
+            <Favourites
+              favouriteBooks={favouriteBooks}
+              setFavouriteBooks={setFavouriteBooks}
+            />
           }
         />
       </Routes>
