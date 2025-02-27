@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 export default function Category({ cache, setCache }) {
   console.clear();
@@ -43,7 +43,9 @@ export default function Category({ cache, setCache }) {
         <>
           <ul>
             {cache[id].map((book, i) => (
-              <li key={i}>{book.title}</li>
+              <li key={i}>
+                <Link to={`/details/${book.id}`}>{book.title}</Link>
+              </li>
             ))}
           </ul>
           <div>
