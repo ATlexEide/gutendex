@@ -7,7 +7,9 @@ export default function Header({ categories }) {
 
   return (
     <header>
-      <h1>Gutenberg oppgave</h1>
+      <Link to={"/"}>
+        <h1>Gutenberg oppgave</h1>
+      </Link>
       <nav>
         <ul id="categories">
           <Link to={`/favourites`}>Favourites |</Link>
