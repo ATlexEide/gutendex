@@ -3,16 +3,41 @@ import { useParams } from "react-router-dom";
 import Header from "./Header";
 import { addToFav } from "../js/handleFavourites";
 
-function Details({ favouriteBooks, setFavouriteBooks, categories }) {
+function Details({
+  setCurrentBook,
+  favouriteBooks,
+  setFavouriteBooks,
+  categories,
+}) {
   const [book, setBook] = useState({});
+  const [isFav, setIsFav] = useState(false);
   const { id } = useParams();
-  console.log(id);
+
+  if (!isFav)
+    for (const fav of favouriteBooks) {
+      console.log("book id: ", id);
+      console.log("book: ", fav);
+
+      for (const [key, value] of Object.entries(fav)) {
+        console.log("key: ", key, "value: ", value);
+        if (key === "id" && value === Number(id)) {
+          console.log("MATCH");
+          setIsFav(true);
+        } else {
+          console.log("NO MATCH");
+        }
+      }
+    }
+
   useEffect(() => {
     fetch(`https://gutendex.com/books/${id}`)
       .then((res) => res.json())
-      .then((res) => setBook(res));
+      .then((res) => {
+        setCurrentBook(res);
+        setBook(res);
+      });
   }, [id]);
-  console.log(book);
+
   return (
     <>
       <Header categories={categories} />
@@ -51,10 +76,14 @@ function Details({ favouriteBooks, setFavouriteBooks, categories }) {
 
       <button
         onClick={() => {
-          addToFav(favouriteBooks, setFavouriteBooks, book);
+          if (!isFav) {
+            setIsFav(true);
+            addToFav(favouriteBooks, setFavouriteBooks, book);
+          }
         }}
       >
-        Add to favourites
+        {isFav && "In favourites"}
+        {!isFav && "Add to favourites"}
       </button>
     </>
   );
