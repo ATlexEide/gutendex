@@ -62,7 +62,13 @@ function App() {
         />
         <Route
           path="/details/:id"
-          element={<Details categories={categories} />}
+          element={
+            <Details
+              favouriteBooks={favouriteBooks}
+              setFavouriteBooks={setFavouriteBooks}
+              categories={categories}
+            />
+          }
         />
       </Routes>
     </Router>
