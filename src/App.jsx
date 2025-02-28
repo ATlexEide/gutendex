@@ -23,11 +23,12 @@ function App() {
   ];
   const [cache, setCache] = useState({});
   const [books, setBooks] = useState([]);
+  const [currentBook, setCurrentBook] = useState();
   const [favouriteBooks, setFavouriteBooks] = useState([
-    { title: "test" },
-    { title: "moby" },
-    { title: "my" },
-    { title: "dick" },
+    { id: 0, title: "test" },
+    { id: 1, title: "moby" },
+    { id: 2, title: "my" },
+    { id: 3, title: "dick" },
   ]);
 
   return (
@@ -64,6 +65,8 @@ function App() {
           path="/details/:id"
           element={
             <Details
+              currentBook={currentBook}
+              setCurrentBook={setCurrentBook}
               favouriteBooks={favouriteBooks}
               setFavouriteBooks={setFavouriteBooks}
               categories={categories}
