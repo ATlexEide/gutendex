@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "./Header";
+import { addToFav } from "../js/handleFavourites";
 
-function Details({ categories }) {
+function Details({ favouriteBooks, setFavouriteBooks, categories }) {
   const [book, setBook] = useState({});
   const { id } = useParams();
   console.log(id);
@@ -48,7 +49,13 @@ function Details({ categories }) {
         </a>
       )}
 
-      <button>Add to favourites</button>
+      <button
+        onClick={() => {
+          addToFav(favouriteBooks, setFavouriteBooks, book);
+        }}
+      >
+        Add to favourites
+      </button>
     </>
   );
 }
