@@ -49,27 +49,28 @@ export default function Category({ categories, cache, setCache }) {
               </li>
             ))}
           </ul>
-          <div>
-            <button
-              onClick={() => {
-                if (page - 1 === 0) return;
-                setPage(page - 1);
-                setIsLoading(true);
-                setCache({ ...cache, [id]: undefined });
-              }}
-            >
-              Previous
-            </button>
-            <button>{page}</button>
+
+          <div id="pagination">
+            {!cache[id].previous && <button disabled>Previous</button>}
+            {cache[id].previous && (
+              <button
+                onClick={() => {
+                  setPage(page - 1);
+                  setIsLoading(true);
+                  setCache({ ...cache, [id]: undefined });
+                }}
+              >
+                Previous
+              </button>
+            )}
+            <button>{cache[`${id}_page`]}</button>
             {!cache[id].next && <button disabled>Next</button>}
             {cache[id].next && (
               <button
                 onClick={() => {
-                  if (cache[id].next) {
-                    setPage(page + 1);
-                    setIsLoading(true);
-                    setCache({ ...cache, [id]: undefined });
-                  }
+                  setPage(page + 1);
+                  setIsLoading(true);
+                  setCache({ ...cache, [id]: undefined });
                 }}
               >
                 Next
