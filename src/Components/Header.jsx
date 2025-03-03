@@ -1,15 +1,35 @@
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Header({ categories }) {
   const testState = { someKey: "someValue" };
   window.history.pushState(testState, "page2.html");
-
+  const navigate = useNavigate();
+  const [input, setInput] = useState("");
   return (
     <header>
       <Link to={"/"}>
         <h1>Gutenberg oppgave</h1>
       </Link>
+      <div id="search-bar">
+        <input
+          type="text"
+          name="title-search"
+          id="title-search"
+          placeholder="Search for a title"
+          onChange={(e) => {
+            setInput(e.target.value);
+          }}
+        />
+        <button
+          onClick={() => {
+            navigate(`/search/${input}`);
+          }}
+        >
+          Search
+        </button>
+      </div>
       <nav>
         <ul id="categories">
           <Link to={`/favourites`}>Favourites |</Link>
