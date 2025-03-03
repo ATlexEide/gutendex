@@ -4,6 +4,7 @@ import Home from "./Components/Home";
 import Category from "./Components/Category";
 import Favourites from "./Components/Favourites";
 import Details from "./Components/Details";
+import SearchResult from "./Components/SearchResult";
 
 function App() {
   const categories = [
@@ -73,6 +74,7 @@ function App() {
             />
           }
         />
+        <Route path="/search/:id" element={<SearchResult />} />
       </Routes>
     </Router>
   );
