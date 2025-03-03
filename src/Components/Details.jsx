@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "./Header";
-import { addToFav } from "../js/handleFavourites";
+import { addToFav, removeFromFav } from "../js/handleFavourites";
 
 function Details({
   setCurrentBook,
@@ -79,6 +79,9 @@ function Details({
           if (!isFav) {
             setIsFav(true);
             addToFav(favouriteBooks, setFavouriteBooks, book);
+          } else {
+            setIsFav(false);
+            removeFromFav(favouriteBooks, setFavouriteBooks, book);
           }
         }}
       >
