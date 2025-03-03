@@ -38,7 +38,7 @@ function App() {
       <Routes>
         <Route
           exact
-          path="/"
+          path="/gutendex"
           element={
             <Home
               cache={cache}

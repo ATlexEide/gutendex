@@ -9,7 +9,7 @@ export default function Header({ categories, setSearchPage }) {
   const [input, setInput] = useState("");
   return (
     <header>
-      <Link to={"/"}>
+      <Link to={"/gutendex"}>
         <h1>Gutenberg oppgave</h1>
       </Link>
       <div id="search-bar">
