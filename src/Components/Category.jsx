@@ -7,6 +7,7 @@ export default function Category({ categories, cache, setCache }) {
   console.log("Category: ", id);
   console.log("Current cache: ", cache);
   const [isLoading, setIsLoading] = useState(true);
+  console.log("Loading: ", isLoading);
   const [page, setPage] = useState(
     cache[`${id}_page`] ? cache[`${id}_page`] : 1
   );
@@ -17,6 +18,7 @@ export default function Category({ categories, cache, setCache }) {
   console.log(cache[id], Boolean(cache[id]));
   useEffect(() => {
     if (!cache[id]) {
+      setIsLoading(true);
       fetch(url)
         .then((res) => res.json())
         .then((res) => {
