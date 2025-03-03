@@ -1,4 +1,5 @@
 import Header from "./Header";
+import { Link } from "react-router-dom";
 
 export default function Favourites({
   categories,
@@ -12,7 +13,11 @@ export default function Favourites({
       <h1>Favourites</h1>
       <ul>
         {favouriteBooks &&
-          favouriteBooks.map((book, i) => <li key={i}>{book.title}</li>)}
+          favouriteBooks.map((book, i) => (
+            <li key={i}>
+              <Link to={`/details/${book.id}`}>{book.title}</Link>
+            </li>
+          ))}
       </ul>
     </>
   );
