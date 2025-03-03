@@ -15,21 +15,8 @@ function Details({
   const { id } = useParams();
 
   // Check if book is in favourites to display properly
-  if (!isFav)
-    for (const fav of favouriteBooks) {
-      // console.log("book id: ", id);
-      // console.log("book: ", fav);
-
-      for (const [key, value] of Object.entries(fav)) {
-        // console.log("key: ", key, "value: ", value);
-        if (key === "id" && value === Number(id)) {
-          // console.log("MATCH");
-          setIsFav(true);
-        } else {
-          // console.log("NO MATCH");
-        }
-      }
-    }
+  if (!isFav && favouriteBooks.map((obj) => obj.id === book.id).includes(true))
+    setIsFav(true);
 
   useEffect(() => {
     fetch(`https://gutendex.com/books/${id}`)
