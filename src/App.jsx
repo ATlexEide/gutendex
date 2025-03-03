@@ -21,15 +21,15 @@ function App() {
     "War",
     "Philosophy",
   ];
+  const favouriteBookStorage = JSON.parse(
+    localStorage.getItem("favourite_books")
+  )
+    ? JSON.parse(localStorage.getItem("favourite_books"))
+    : [];
   const [cache, setCache] = useState({});
   const [books, setBooks] = useState([]);
   const [currentBook, setCurrentBook] = useState();
-  const [favouriteBooks, setFavouriteBooks] = useState([
-    { id: 0, title: "test" },
-    { id: 1, title: "moby" },
-    { id: 2, title: "my" },
-    { id: 3, title: "dick" },
-  ]);
+  const [favouriteBooks, setFavouriteBooks] = useState(favouriteBookStorage);
 
   return (
     <Router>
