@@ -1,10 +1,10 @@
 import Header from "./Header";
 
-export default function Home({ cache, categories }) {
+export default function Home({ cache, categories, setSearchPage }) {
   console.log("Current cache: ", cache);
   return (
     <>
-      <Header categories={categories} />
+      <Header setSearchPage={setSearchPage} categories={categories} />
     </>
   );
 }

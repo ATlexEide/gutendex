@@ -4,6 +4,7 @@ import Header from "./Header";
 import { addToFav, removeFromFav } from "../js/handleFavourites";
 
 function Details({
+  setSearchPage,
   setCurrentBook,
   favouriteBooks,
   setFavouriteBooks,
@@ -41,7 +42,7 @@ function Details({
 
   return (
     <>
-      <Header categories={categories} />
+      <Header setSearchPage={setSearchPage} categories={categories} />
       <h1>Details</h1>
       {book.title && <h2>{book.title}</h2>}
       {book.formats && (
