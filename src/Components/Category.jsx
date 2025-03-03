@@ -21,7 +21,7 @@ export default function Category({ categories, cache, setCache }) {
         .then((res) => res.json())
         .then((res) => {
           console.log(res.results);
-          setCache({ ...cache, [`${id}_page`]: page, [id]: res.results });
+          setCache({ ...cache, [`${id}_page`]: page, [id]: res });
           console.log("Updated cache: ", cache);
           setIsLoading(false);
         })
@@ -29,7 +29,7 @@ export default function Category({ categories, cache, setCache }) {
     } else {
       setIsLoading(false);
     }
-  }, [page]);
+  }, [page, cache, id, setCache, url]);
 
   return (
     <>
@@ -43,7 +43,7 @@ export default function Category({ categories, cache, setCache }) {
       {cache[id] && (
         <>
           <ul>
-            {cache[id].map((book, i) => (
+            {cache[id].results.map((book, i) => (
               <li key={i}>
                 <Link to={`/details/${book.id}`}>{book.title}</Link>
               </li>
@@ -61,15 +61,20 @@ export default function Category({ categories, cache, setCache }) {
               Previous
             </button>
             <button>{page}</button>
-            <button
-              onClick={() => {
-                setPage(page + 1);
-                setIsLoading(true);
-                setCache({ ...cache, [id]: undefined });
-              }}
-            >
-              Next
-            </button>
+            {!cache[id].next && <button disabled>Next</button>}
+            {cache[id].next && (
+              <button
+                onClick={() => {
+                  if (cache[id].next) {
+                    setPage(page + 1);
+                    setIsLoading(true);
+                    setCache({ ...cache, [id]: undefined });
+                  }
+                }}
+              >
+                Next
+              </button>
+            )}
           </div>
         </>
       )}
