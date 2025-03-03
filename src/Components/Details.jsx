@@ -16,16 +16,16 @@ function Details({
   // Check if book is in favourites to display properly
   if (!isFav)
     for (const fav of favouriteBooks) {
-      console.log("book id: ", id);
-      console.log("book: ", fav);
+      // console.log("book id: ", id);
+      // console.log("book: ", fav);
 
       for (const [key, value] of Object.entries(fav)) {
-        console.log("key: ", key, "value: ", value);
+        // console.log("key: ", key, "value: ", value);
         if (key === "id" && value === Number(id)) {
-          console.log("MATCH");
+          // console.log("MATCH");
           setIsFav(true);
         } else {
-          console.log("NO MATCH");
+          // console.log("NO MATCH");
         }
       }
     }
@@ -86,7 +86,7 @@ function Details({
           }
         }}
       >
-        {isFav && "In favourites"}
+        {isFav && "Remove from favourites"}
         {!isFav && "Add to favourites"}
       </button>
     </>
