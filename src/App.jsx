@@ -74,7 +74,10 @@ function App() {
             />
           }
         />
-        <Route path="/search/:id" element={<SearchResult />} />
+        <Route
+          path="/search/:id"
+          element={<SearchResult categories={categories} />}
+        />
       </Routes>
     </Router>
   );
