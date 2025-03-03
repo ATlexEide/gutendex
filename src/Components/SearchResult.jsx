@@ -2,16 +2,15 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Header from "./Header";
 
-export default function Category({ categories }) {
+export default function Category({ categories, setSearchPage, searchPage }) {
   console.clear();
   const { id } = useParams();
   console.log("Search: ", id);
   const [isLoading, setIsLoading] = useState(true);
   console.log("Loading: ", isLoading);
   const [results, setResults] = useState([]);
-  const [page, setPage] = useState(results.page ? results.page : 1);
 
-  const url = `https://gutendex.com/books?search=dickens%20great`;
+  const url = `https://gutendex.com/books?page=${searchPage}&search=${id}`;
   console.log("results: ", results);
   useEffect(() => {
     setIsLoading(true);
@@ -19,15 +18,15 @@ export default function Category({ categories }) {
       .then((res) => res.json())
       .then((res) => {
         console.log(res.results);
-        setResults({ ...results, [`page`]: page, ["books"]: res });
+        setResults({ ...results, [`page`]: searchPage, ["books"]: res });
         setIsLoading(false);
       })
       .catch((e) => console.log(e));
-  }, [page, results, id, url]);
+  }, [searchPage, url, id]);
 
   return (
     <>
-      <Header categories={categories} />
+      <Header setSearchPage={setSearchPage} categories={categories} />
       <h1>{id}</h1>
       {isLoading && (
         <>
@@ -49,7 +48,7 @@ export default function Category({ categories }) {
             {results.books.previous && (
               <button
                 onClick={() => {
-                  setPage(page - 1);
+                  setSearchPage(searchPage - 1);
                   setIsLoading(true);
                   setResults({ ...results, ["page"]: undefined });
                 }}
@@ -62,7 +61,7 @@ export default function Category({ categories }) {
             {results.books.next && (
               <button
                 onClick={() => {
-                  setPage(page + 1);
+                  setSearchPage(searchPage + 1);
                   setIsLoading(true);
                   setResults({ ...results, ["page"]: undefined });
                 }}
