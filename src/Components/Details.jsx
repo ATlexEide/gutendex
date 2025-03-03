@@ -13,6 +13,7 @@ function Details({
   const [isFav, setIsFav] = useState(false);
   const { id } = useParams();
 
+  // Check if book is in favourites to display properly
   if (!isFav)
     for (const fav of favouriteBooks) {
       console.log("book id: ", id);
