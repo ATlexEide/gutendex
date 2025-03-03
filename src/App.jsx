@@ -31,6 +31,7 @@ function App() {
   const [books, setBooks] = useState([]);
   const [currentBook, setCurrentBook] = useState();
   const [favouriteBooks, setFavouriteBooks] = useState(favouriteBookStorage);
+  const [searchPage, setSearchPage] = useState(1);
 
   return (
     <Router>
@@ -38,12 +39,21 @@ function App() {
         <Route
           exact
           path="/"
-          element={<Home cache={cache} categories={categories} />}
+          element={
+            <Home
+              cache={cache}
+              searchPage={searchPage}
+              setSearchPage={setSearchPage}
+              categories={categories}
+            />
+          }
         />
         <Route
           path="/category/:id"
           element={
             <Category
+              searchPage={searchPage}
+              setSearchPage={setSearchPage}
               categories={categories}
               cache={cache}
               setCache={setCache}
@@ -56,6 +66,8 @@ function App() {
           path="/favourites"
           element={
             <Favourites
+              searchPage={searchPage}
+              setSearchPage={setSearchPage}
               categories={categories}
               favouriteBooks={favouriteBooks}
               setFavouriteBooks={setFavouriteBooks}
@@ -66,6 +78,8 @@ function App() {
           path="/details/:id"
           element={
             <Details
+              searchPage={searchPage}
+              setSearchPage={setSearchPage}
               currentBook={currentBook}
               setCurrentBook={setCurrentBook}
               favouriteBooks={favouriteBooks}
@@ -76,7 +90,13 @@ function App() {
         />
         <Route
           path="/search/:id"
-          element={<SearchResult categories={categories} />}
+          element={
+            <SearchResult
+              searchPage={searchPage}
+              setSearchPage={setSearchPage}
+              categories={categories}
+            />
+          }
         />
       </Routes>
     </Router>
