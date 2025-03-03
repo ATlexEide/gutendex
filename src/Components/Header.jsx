@@ -2,7 +2,7 @@ import "./Header.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Header({ categories }) {
+export default function Header({ categories, setSearchPage }) {
   const testState = { someKey: "someValue" };
   window.history.pushState(testState, "page2.html");
   const navigate = useNavigate();
@@ -24,6 +24,7 @@ export default function Header({ categories }) {
         />
         <button
           onClick={() => {
+            setSearchPage(1);
             navigate(`/search/${input}`);
           }}
         >
