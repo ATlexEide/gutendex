@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Header from "./Header";
+import Throbber from "./Throbber";
 export default function Category({
   categories,
   cache,
@@ -41,14 +42,10 @@ export default function Category({
   return (
     <>
       <Header setSearchPage={setSearchPage} categories={categories} />
-      <h1>{id}</h1>
-      {isLoading && (
-        <>
-          <p>Loading...</p>
-        </>
-      )}
+      {isLoading && <Throbber />}
       {cache[id] && (
         <>
+          <h1>{id}</h1>
           <ul>
             {cache[id].results.map((book, i) => (
               <li key={i}>
