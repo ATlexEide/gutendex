@@ -1,3 +1,4 @@
+import "./Category.css";
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Header from "./Header";
@@ -44,8 +45,8 @@ export default function Category({
       <Header setSearchPage={setSearchPage} categories={categories} />
       {isLoading && <Throbber />}
       {cache[id] && (
-        <>
-          <h1>{id}</h1>
+        <section id="category-container">
+          <h1 id="category-title">{id}</h1>
           <ul>
             {cache[id].results.map((book, i) => (
               <li key={i}>
@@ -67,7 +68,7 @@ export default function Category({
                 Previous
               </button>
             )}
-            <button>{cache[`${id}_page`]}</button>
+            <button id="current-page">{cache[`${id}_page`]}</button>
             {!cache[id].next && <button disabled>Next</button>}
             {cache[id].next && (
               <button
@@ -81,7 +82,7 @@ export default function Category({
               </button>
             )}
           </div>
-        </>
+        </section>
       )}
     </>
   );
