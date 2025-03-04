@@ -9,7 +9,7 @@ export default function Header({ categories, setSearchPage }) {
   const [input, setInput] = useState("");
   return (
     <header>
-      <Link to={"/gutendex"}>
+      <Link to={"/gutendex/"}>
         <p id="header-title">
           GUTEN <br />
           DEX
