@@ -1,3 +1,4 @@
+import "./Category.css";
 import Header from "./Header";
 import { Link } from "react-router-dom";
 
@@ -10,15 +11,18 @@ export default function Favourites({
   return (
     <>
       <Header setSearchPage={setSearchPage} categories={categories} />
-      <h1>Favourites</h1>
-      <ul>
-        {favouriteBooks &&
-          favouriteBooks.map((book, i) => (
-            <li key={i}>
-              <Link to={`/details/${book.id}`}>{book.title}</Link>
-            </li>
-          ))}
-      </ul>
+      {favouriteBooks && (
+        <section id="category-container">
+          <h1 id="category-title">FAVOURITES</h1>
+          <ul>
+            {favouriteBooks.map((book, i) => (
+              <li key={i}>
+                <Link to={`/details/${book.id}`}>{book.title}</Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </>
   );
 }
