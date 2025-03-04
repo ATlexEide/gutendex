@@ -10,35 +10,44 @@ export default function Header({ categories, setSearchPage }) {
   return (
     <header>
       <Link to={"/gutendex"}>
-        <h1>Gutenberg oppgave</h1>
+        <h1>
+          GUTEN <br />
+          DEX
+        </h1>
       </Link>
-      <div id="search-bar">
-        <input
-          type="text"
-          name="title-search"
-          id="title-search"
-          placeholder="Search for a title"
-          onChange={(e) => {
-            setInput(e.target.value);
-          }}
-        />
-        <button
-          onClick={() => {
-            setSearchPage(1);
-            navigate(`/search/${input}`);
-          }}
-        >
-          Search
-        </button>
-      </div>
       <nav>
         <ul id="categories">
-          <Link to={`/favourites`}>Favourites |</Link>
-          {categories.map((cat, i) => (
-            <li key={i}>
-              <Link to={`/category/${cat}`}>{cat}</Link>
+          <div id="fav-container">
+            <li>
+              <Link to={`/favourites`}>Favourites</Link>
             </li>
-          ))}
+            <div id="search-bar">
+              <input
+                type="text"
+                name="title-search"
+                id="title-search"
+                placeholder="Search for a title"
+                onChange={(e) => {
+                  setInput(e.target.value);
+                }}
+              />
+              <button
+                onClick={() => {
+                  setSearchPage(1);
+                  navigate(`/search/${input}`);
+                }}
+              >
+                <img src="./search.svg" alt="search icon" />
+              </button>
+            </div>
+          </div>
+          <div id="categories-container">
+            {categories.map((cat, i) => (
+              <li key={i}>
+                <Link to={`/category/${cat}`}>{cat}</Link>
+              </li>
+            ))}
+          </div>
         </ul>
       </nav>
     </header>
