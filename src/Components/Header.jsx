@@ -37,7 +37,7 @@ export default function Header({ categories, setSearchPage }) {
                   navigate(`/search/${input}`);
                 }}
               >
-                <img src="./search.svg" alt="search icon" />
+                <img src="/gutendex/public/search.svg" alt="search icon" />
               </button>
             </div>
           </div>
