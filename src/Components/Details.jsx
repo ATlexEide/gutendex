@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "./Header";
 import { addToFav, removeFromFav } from "../js/handleFavourites";
+import Throbber from "./Throbber";
 
 function Details({
   setSearchPage,
@@ -12,23 +13,27 @@ function Details({
 }) {
   const [book, setBook] = useState({});
   const [isFav, setIsFav] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
-
   // Check if book is in favourites to display properly
-  if (!isFav && favouriteBooks.map((obj) => obj.id === book.id).includes(true))
-    setIsFav(true);
 
   useEffect(() => {
+    setIsLoading(true);
     fetch(`https://gutendex.com/books/${id}`)
       .then((res) => res.json())
       .then((res) => {
         setCurrentBook(res);
         setBook(res);
+        setIsLoading(false);
       });
   }, [id]);
 
+  if (!isFav && favouriteBooks.map((obj) => obj.id === book.id).includes(true))
+    setIsFav(true);
+
   return (
     <>
+      {isLoading && <Throbber />}
       <Header setSearchPage={setSearchPage} categories={categories} />
       <h1>Details</h1>
       {book.title && <h2>{book.title}</h2>}
