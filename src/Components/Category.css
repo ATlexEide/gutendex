@@ -1,0 +1,38 @@
+#category-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0 69px;
+}
+
+#category-title {
+  padding: 2rem;
+  letter-spacing: 3rem;
+  font-weight: 200;
+  text-align: right;
+}
+#pagination {
+  display: flex;
+  padding: 48px 0;
+  gap: 20px;
+}
+#pagination #current-page {
+  width: 70px;
+  border-radius: 10px;
+}
+#pagination button {
+  width: 140px;
+  background-color: var(--bg-color);
+  border: solid 1px white;
+  border-radius: 25px;
+}
+#category-container ul {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+#category-container li {
+  letter-spacing: 0.3rem;
+  list-style: none;
+  font-size: 2rem;
+}
