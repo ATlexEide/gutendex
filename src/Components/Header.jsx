@@ -10,10 +10,10 @@ export default function Header({ categories, setSearchPage }) {
   return (
     <header>
       <Link to={"/gutendex"}>
-        <h1>
+        <p id="header-title">
           GUTEN <br />
           DEX
-        </h1>
+        </p>
       </Link>
       <nav>
         <ul id="categories">

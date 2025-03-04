@@ -40,7 +40,7 @@ nav {
   justify-content: space-between;
   align-items: start;
 }
-h1 {
+#header-title {
   font-weight: 300;
   letter-spacing: 0.5rem;
   font-size: 4rem;
