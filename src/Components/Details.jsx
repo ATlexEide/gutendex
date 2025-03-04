@@ -1,3 +1,5 @@
+import "./Category.css";
+import "./Details.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "./Header";
@@ -34,54 +36,72 @@ function Details({
   return (
     <>
       {isLoading && <Throbber />}
-      <Header setSearchPage={setSearchPage} categories={categories} />
-      <h1>Details</h1>
-      {book.title && <h2>{book.title}</h2>}
-      {book.formats && (
-        <img src={book.formats["image/jpeg"]} alt={`${book.title} cover`} />
-      )}
-      {/* {book.authors && (
-        <ul>
-          {book.authors.map((author, i) => (
-            <li key={i}>{author}</li>
-          ))}
-        </ul>
-      )} */}
-      {book.download_count && <p>Downloads: {book.download_count}</p>}
-      {book.category && <p>{book.category}</p>}
-      {book.languages && (
-        <ul>
-          <p>Languages:</p>
-          {book.languages.map((lang, i) => (
-            <li key={i}>{lang}</li>
-          ))}
-        </ul>
-      )}
-      {book.formats && (
-        <a target="_blank" href={book.formats["text/plain; charset=us-ascii"]}>
-          <button>Read</button>
-        </a>
-      )}
-      {book.formats && (
-        <a target="_blank" href={book.formats["application/epub+zip"]}>
-          <button>Download ePUB</button>
-        </a>
-      )}
 
-      <button
-        onClick={() => {
-          if (!isFav) {
-            setIsFav(true);
-            addToFav(favouriteBooks, setFavouriteBooks, book);
-          } else {
-            setIsFav(false);
-            removeFromFav(favouriteBooks, setFavouriteBooks, book);
-          }
-        }}
-      >
-        {isFav && "Remove from favourites"}
-        {!isFav && "Add to favourites"}
-      </button>
+      <Header setSearchPage={setSearchPage} categories={categories} />
+      <h1 id="category-title">DETAILS</h1>
+      {book && (
+        <section id="details-container">
+          {book.formats && (
+            <img
+              id="cover-image"
+              src={book.formats["image/jpeg"]}
+              alt={`${book.title} cover`}
+            />
+          )}
+
+          <div id="details">
+            {book.title && <h2>{book.title}</h2>}
+            {book.authors && (
+              <ul className="details-list">
+                {book.authors.map((author, i) => (
+                  <li key={i}>
+                    {author.name} |{" "}
+                    {`${author.birth_year} - ${author.death_year}`}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {book.download_count && <p>Downloads: {book.download_count}</p>}
+            {book.category && <p>{book.category}</p>}
+            {book.languages && (
+              <ul className="details-list">
+                <p>Languages:</p>
+                {book.languages.map((lang, i) => (
+                  <li key={i}>{lang}</li>
+                ))}
+              </ul>
+            )}
+            {book.formats && (
+              <div id="details-button-container">
+                <a
+                  target="_blank"
+                  href={book.formats["text/plain; charset=us-ascii"]}
+                >
+                  <button>Read</button>
+                </a>
+
+                <a target="_blank" href={book.formats["application/epub+zip"]}>
+                  <button>Download ePUB</button>
+                </a>
+                <button
+                  onClick={() => {
+                    if (!isFav) {
+                      setIsFav(true);
+                      addToFav(favouriteBooks, setFavouriteBooks, book);
+                    } else {
+                      setIsFav(false);
+                      removeFromFav(favouriteBooks, setFavouriteBooks, book);
+                    }
+                  }}
+                >
+                  {isFav && "Remove from favourites"}
+                  {!isFav && "Add to favourites"}
+                </button>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
     </>
   );
 }
