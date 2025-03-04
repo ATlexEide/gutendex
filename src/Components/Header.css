@@ -1,7 +1,8 @@
 header {
   max-width: 100vw;
   height: 170px;
-  padding: 28px 64px;
+  padding: 0 64px;
+  margin-top: 20px;
   display: flex;
   gap: 48px;
   justify-content: space-between;
